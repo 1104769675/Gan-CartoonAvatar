@@ -110,12 +110,12 @@ class DCGAN():
         model.add(Flatten())
         model.add(Dense(1, activation='sigmoid'))
 
-        model.summary()
+        model.summary() #打印网络参数
 
         img = Input(shape=self.img_shape)
         validity = model(img)
 
-        return Model(img,validity)
+        return Model(img,validity) #定义一个 一个输入img一个输出可靠数值的模型
 
     def train(self,epochs,batch_size=128,save_interval = 50):
 
