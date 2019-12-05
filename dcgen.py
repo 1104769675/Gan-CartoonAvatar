@@ -170,7 +170,7 @@ class DCGAN():
             images = image.load_img(os.path.join(dirName, img_names[i]), target_size=(96, 96))
             x = image.img_to_array(images)
             x = np.expand_dims(x, axis=0)
-            img.append(x)
+            img.append(x)     #这步还不是很明白，具体操作过程
             # print('loading no.%s image' % i)
 
         # 把图片数组联合在一起
@@ -197,9 +197,13 @@ class DCGAN():
                 cnt += 1
         fig.savefig("images/mnist_%d.png" % epoch)
         plt.close()
+        
+        
     def loadModel(self):
         self.combined = load_model('./model/combined_model_last.h5')
         self.discriminator = load_model('./model/discriminator_model_last.h5')
+        
+        
 if __name__ == '__main__':
     dcgan = DCGAN()
     dcgan.train(epochs=40000, batch_size=64, save_interval=800)
